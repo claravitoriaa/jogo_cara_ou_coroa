@@ -1,37 +1,42 @@
 let heads = 0;
 let tails = 0;
-let coin  = document.querySelector(".coin");
-let flipBtn = ocument.querySelector("#flip-button");
+let coin = document.querySelector(".coin");
+let flipBtn = document.querySelector("#flip-button");
 let resetBtn = document.querySelector("#reset-button");
 
 flipBtn.addEventListener("click", () => {
- let i = Math.floor(math.random () *2);
- coin.computedStyleMAP.animation = 'none'
- if(i) {
-    setTimeout(function () {
-        coin.computedStyleMAP.animation = 'spin-heads 3s forwars'
-    }, 100);
-    heads++;
- } else {  
-    setTimeout(function (){
-        coin.computedStyleMAP.animation = 'spin-tails 3s for 3s forwards'
-    }, 100);
-    tails++;
-
- }
-   setTimeout(updateStats, 300);
-   diableButton();
+    let i = Math.floor(Math.random() * 2);
+    coin.style.animation = 'none';
+    if(i) {
+        setTimeout(function() {
+            coin.style.animation = 'spin-heads 3s forwards'
+        },100);
+        heads++;
+    } else {
+        setTimeout(function() {
+            coin.style.animation = 'spin-tails 3s forwards'
+        }, 100);
+        tails++;
+    }
+    setTimeout(updateStats, 3000);
+    disableButton();
 });
 
 function updateStats() {
-    document.querySelector('#heads-count').textContent= 
-    'cara: ${heads}';
-    document.querySelector('#tails-count').textContent=
-    'coroa: ${tails}';
+    document.querySelector('#heads-count').textContent = `Cara: ${heads}`;
+    document.querySelector('#tails-count').textContent = `Coroa: ${tails}`;
 };
-function diableButton (){
-    flipBtn.disable = true;
-    setTimeout (function ()  {
-          flipBtn.disable =  false;
-    }, 300 );
+
+function disableButton() {
+    flipBtn.disabled = true;
+    setTimeout(function() {
+        flipBtn.disabled = false;
+    }, 3000);
 }
+
+resetBtn.addEventListener('click', () => {
+    coin.computedStyleMap.animation = 'none';
+    heads = 0;
+    tails = 0;
+    updateStats()
+})
